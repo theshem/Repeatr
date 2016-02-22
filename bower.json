@@ -1,0 +1,28 @@
+{
+  "name": "Repeatr",
+  "homepage": "https://github.com/HashemQolami/Repeatr",
+  "authors": [
+    "Hashem Qolami <hashem@qolami.com>"
+  ],
+  "description": "A micro JavaScript library for repetitive tasks",
+  "main": "src/Repeatr.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "Repeat",
+    "Repetitive",
+    "Timed",
+    "Timer",
+    "Timeout"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "repeatr",
+  "version": "1.0.0",
+  "description": "A micro JavaScript library for running repetitive time-based tasks",
+  "main": "src/Repeatr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HashemQolami/Repeatr.git"
+  },
+  "keywords": [
+    "Repeat",
+    "Repetitive",
+    "Timed",
+    "Timer",
+    "Timeout"
+  ],
+  "author": "Hashem Qolami <hashem@qolami.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HashemQolami/Repeatr/issues"
+  },
+  "homepage": "https://github.com/HashemQolami/Repeatr#readme"
+}

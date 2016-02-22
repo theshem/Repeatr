@@ -1,7 +1,7 @@
 /*!
- *  Repeatr.js library
+ *  Repeatr.js
  *
- *  Repeatr JS is a micro-library for running repetitive tasks
+ *  Repeatr is a micro JavaScript library for running repetitive tasks
  *
  *  Made by @HashemQolami with care
  *  Released under MIT license
@@ -116,7 +116,7 @@
                     invoked = true;
                 }
 
-                // terminates the handler and return the Repeatr object
+                // terminates the handler and returns the Repeatr object
                 // if none of the given functions in the list is invocable
                 if (!invoked) {
                     return this;
