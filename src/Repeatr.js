@@ -23,6 +23,47 @@
         return new Repeatr.init();
     };
 
+    // declares the handler function to be invoked
+    function handler() {
+        // internal variable to check if
+        // function list contains invokable objects
+        var invoked = false;
+
+        // invokes the given functions, in order
+        for (var i = 0, length = this.fn.length; i < length; i++) {
+            // checks if the current function is valid
+            // otherwise, ignore it
+            if (typeof this.fn[i] !== 'function') {
+                continue;
+            }
+
+            this.fn[i].call(this);
+            // sets the invocation state
+            invoked = true;
+        }
+
+        // terminates the handler and returns the Repeatr object
+        // if none of the given functions in the list is invocable
+        if (!invoked) {
+            return this;
+        }
+
+        // increases the counter for each call
+        this.count();
+
+        // invokes the functions again based on the mode of repetition
+        // for finite tasks, repates the functions
+        // if the call counter is less than requested iteration
+        if (this.hasOwnProperty('iteration') &&
+            this.counter >= this.iteration) {
+            // terminates the function and returns the current object
+            return this;
+        }
+        
+        // sets the timer again
+        this.timeout = setTimeout(handler.bind(this), this.period);
+    }
+
     // initializr function
     Repeatr.init = function () {
         // reset the counter
@@ -98,46 +139,6 @@
 
         // runs the repeatr with handlers
         start: function () {
-            // declares the handler function to be invoked
-            function handler() {
-                // internal variable to check if function list contains invokable objects
-                var invoked = false;
-
-                // invokes the given functions, in order
-                for (var i = 0, length = this.fn.length; i < length; i++) {
-                    // checks if the current function is valid
-                    // otherwise, ignore it
-                    if (typeof this.fn[i] !== 'function') {
-                        continue;
-                    }
-
-                    this.fn[i].call(this);
-                    // sets the invocation state
-                    invoked = true;
-                }
-
-                // terminates the handler and returns the Repeatr object
-                // if none of the given functions in the list is invocable
-                if (!invoked) {
-                    return this;
-                }
-
-                // increases the counter for each call
-                this.count();
-
-                // invokes the function again based on the mode of repetition
-                if (this.hasOwnProperty('iteration')) {
-                    // if the call counter is less than requested iteration
-                    // sets the timer again
-                    if (this.counter < this.iteration) {
-                        this.timeout = setTimeout(handler.bind(this), this.period);
-                    }
-                } else {
-                    // sets the timer infinitely
-                    this.timeout = setTimeout(handler.bind(this), this.period);
-                }
-            }
-
             // calls the handler after delayTime for initial load
             setTimeout(handler.bind(this), this.delayTime);
 
