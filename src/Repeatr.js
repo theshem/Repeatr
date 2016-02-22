@@ -15,7 +15,7 @@
  *  job2.stop();  // stops the repetitive calls
  *  job1.reset(); // resets the number of calls, renews the internal counter
  */
-+function (global) {
++function (global, undefined) {
     'use strict';
 
     // internal repeatr function
@@ -130,16 +130,16 @@
                     // if the call counter is less than requested iteration
                     // sets the timer again
                     if (this.counter < this.iteration) {
-                        this.timeout = global.setTimeout(handler.bind(this), this.period);
+                        this.timeout = setTimeout(handler.bind(this), this.period);
                     }
                 } else {
                     // sets the timer infinitely
-                    this.timeout = global.setTimeout(handler.bind(this), this.period);
+                    this.timeout = setTimeout(handler.bind(this), this.period);
                 }
             }
 
             // calls the handler after delayTime for initial load
-            global.setTimeout(handler.bind(this), this.delayTime);
+            setTimeout(handler.bind(this), this.delayTime);
 
             // returns the current object
             return this;
@@ -147,7 +147,7 @@
 
         // stops the job/calling the function
         stop: function () {
-            global.clearTimeout(this.timeout);
+            clearTimeout(this.timeout);
             // return the current object
             return this;
         }
@@ -156,12 +156,15 @@
     // adds a pointer for prototype object
     Repeatr.init.prototype = Repeatr.prototype;
 
-    // exposes the Repeatr in global scope
-    if (global.Repeatr) {
-        console.error('Repeatr variable already exists in global scope');
-        return;
+    // exposing the Repeatr
+    // adding AMD support
+    if (typeof define === 'function' && define.amd) {
+        define([], Repeatr);
+    // for node
+    } else if (typeof exports === 'object') {
+        module.exports = Repeatr;
+    // window
+    } else {
+        global.Repeatr = Repeatr;
     }
-
-    global.Repeatr = Repeatr;
-
-}(window);
+}(this);
