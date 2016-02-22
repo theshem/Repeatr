@@ -1,0 +1,19 @@
+##################
+## Sublime Text
+##################
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+##################
+## PhpStorm
+##################
+/.idea/
+
+##################
+## Mac OS
+##################
+
+# Mac crap
+.DS_Store
