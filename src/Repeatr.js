@@ -15,7 +15,7 @@
  *  job2.stop();  // stops the repetitive calls
  *  job1.reset(); // resets the number of calls, renews the internal counter
  */
-+function (global, undefined) {
++function (global) {
     'use strict';
 
     // internal repeatr function
